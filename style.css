@@ -1,11 +1,12 @@
 /*
 	Theme Name: Sapphire Owl Theme
+	Theme URI: http://www.sapphireowl.com/
 	Description: A Genesis child theme for The Sapphire Owl blog
 	Author: Christy Lewis
 	Author URI: http://www.christyml.com/
 	Version: 1.0
  
-	Tags: gray, white, navy, gold, one-column, two-columns, fixed-width, custom-menu, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+	Tags: gray, white, blue, yellow, one-column, two-columns, fixed-layout, responsive-layout, custom-menu, full-width-template, sticky-post, theme-options, threaded-comments
  
 	Template: genesis
 	Template Version: 2.0.1
@@ -133,13 +134,13 @@ html {
 }
 
 body {
-	background-color: #f5f5f5;
-	color: #666;
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background: #fff url("images/bgPattern.jpg") repeat;
+	color: #444444;
+	font-family: Sanchez, Georgia, serif;
 	font-size: 16px;
 	font-size: 1.6rem;
-	font-weight: 300;
-	line-height: 1.625;
+	font-weight: 400;
+	line-height: 1.8;
 }
 
 a,
@@ -178,13 +179,14 @@ a img {
 }
 
 a:hover {
-	color: #333;
+	color: #000;
 }
 
 p {
 	margin: 0 0 24px;
 	margin: 0 0 2.4rem;
 	padding: 0;
+	text-align: justify;
 }
 
 strong {
@@ -237,7 +239,7 @@ h4,
 h5,
 h6 {
 	color: #333;
-	font-family: Lato, sans-serif;
+	font-family: Signika, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 700;
 	line-height: 1.2;
 	margin: 0 0 16px;
@@ -297,7 +299,6 @@ img {
 input,
 select,
 textarea {
-	background-color: #fff;
 	border: 1px solid #ddd;
 	border-radius: 3px;
 	box-shadow: 1px 1px 3px #eee inset;
@@ -407,13 +408,13 @@ Structure and Layout
 .site-inner,
 .wrap {
 	margin: 0 auto;
-	max-width: 1140px;
+	max-width: 1180px;
 }
 
 .site-inner {
 	clear: both;
-	padding-top: 40px;
-	padding-top: 4rem;
+	padding-top: 20px;
+	padding-top: 2rem;
 }
 
 /* Column Widths and Positions
@@ -440,7 +441,7 @@ Structure and Layout
 
 .content {
 	float: right;
-	width: 740px;
+	width: 775px;
 }
 
 .content-sidebar .content,
@@ -463,7 +464,7 @@ Structure and Layout
 
 .sidebar-primary {
 	float: right;
-	width: 360px;
+	width: 375px;
 }
 
 .sidebar-content .sidebar-primary,
@@ -560,6 +561,10 @@ Common Classes
 	margin-left: 2.4rem;
 }
 
+.aligncenter .avatar {
+	float: none;
+}
+
 .search-form input[type="submit"] {
 	border: 0;
 	clip: rect(0, 0, 0, 0);
@@ -610,7 +615,7 @@ img.alignright,
 .wp-caption-text {
 	font-size: 14px;
 	font-size: 1.4rem;
-	font-weight: 700;
+	font-weight: bold;
 	text-align: center;
 }
 
@@ -641,10 +646,7 @@ img.alignright,
 	margin-bottom: 4rem;
 }
 
-.archive-description {
-	padding: 40px 40px 24px;
-	padding: 4rem 4rem 2.4rem;
-}
+.archive-description .archive-title { margin-bottom: 0; }
 
 .author-box {
 	padding: 40px;
@@ -677,9 +679,13 @@ img.alignright,
 --------------------------------------------- */
 
 .entry-title {
-	font-size: 36px;
-	font-size: 3.6rem;
+	font-size: 28px;
+	font-size: 2.8rem;
 	line-height: 1;
+	text-transform: uppercase;
+	padding-top: 28px;
+	padding-top: 2.8rem;
+	margin-bottom: 0;
 }
 
 .entry-title a,
@@ -735,6 +741,80 @@ Widgets
 
 .featured-content .entry-title a {
 	border: none;
+}
+
+
+/* TSO User Profile
+--------------------------------------------- */
+/* User profile and search widgets */
+.sidebar .widget.tso-user-profile, .sidebar .widget.widget_search { margin-bottom: 0; }
+
+.sidebar .widget.tso-user-profile {
+	padding-top: 15px;
+	padding-top: 1.5rem;
+}
+.tso-user-profile .aligncenter { text-align: center; }
+.tso-user-profile .avatar { border-radius: 50%; }
+.tso-user-profile .tso_bio_title {
+	text-align: center;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+	padding-bottom: 2rem;
+}
+.tso-user-profile p {
+	text-align: center;
+	font-style: italic;
+}
+
+/* Search and subscribe email overrides */
+.sidebar .widget.widget_search { padding: 0; }
+.widget.widget_search .search-form input[type="search"], .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding: 20px 0; }
+.widget.widget_search .search-form input[type="search"], .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding-left: 35px; }
+.widget.widget_search .search-form input[type="search"] { background: transparent url(images/icons/icon_search_box.png) no-repeat left center; }
+
+
+/* START Jetpack subscription overrides */
+/* TODO: If switching to a different subscription plugin, remove this and restyle new plugin. */
+.sidebar .widget.jetpack_subscription_widget {
+	margin-top: 6rem;
+}
+.sidebar .widget.jetpack_subscription_widget #subscribe-field {
+	background: transparent url(images/icons/icon_subscribe_box.png) no-repeat left center;
+	border-width: 1pt 0;
+	border-style: solid;
+	border-color: #d4d4d4;
+}
+.sidebar .widget.jetpack_subscription_widget .widget-title, .sidebar .widget.jetpack_subscription_widget #subscribe-text { margin-bottom: 0; }
+/* END Jetpack subscription overrides */
+
+
+/* Social buttons in sidebar */
+.sidebar .widget.tso-user-icons {
+	text-align: center;
+}
+.sidebar .widget.tso-user-icons ul {
+	clear: both;
+	width: 100%;
+}
+.sidebar .widget.tso-user-icons ul li {
+	display: inline-block;
+	/*height: 120px;*/
+	/*margin-bottom: -60px;*/
+	/*text-align: left;*/
+}
+.sidebar .widget.tso-user-icons a {
+	text-decoration: none;
+	border-bottom-width: 0;
+	outline: none;
+}
+
+.sidebar .widget.tso-user-icons a img {
+	padding-right: 5px;
+	padding-right: .5rem;
+}
+
+.sidebar .widget.tso-user-icons a:hover img {
+	opacity: .75;
 }
 
 
@@ -822,13 +902,12 @@ img#wpstats {
 Site Header
 ---------------------------------------------------------------------------------------------------- */
 
-.site-header {
-	background-color: #fff;
-}
+.site-header {}
 
 .site-header .wrap {
-	padding: 40px 0;
-	padding: 4rem 0;
+	padding: 40px 0 20px;
+	padding: 4rem 0 2rem;
+	text-align: center;
 }
 
 /* Title Area
@@ -836,8 +915,6 @@ Site Header
 
 .title-area {
 	float: left;
-	font-family: Lato, sans-serif;
-	font-weight: 700;
 	padding: 16px 0;
 	padding: 1.6rem 0;
 	width: 320px;
@@ -865,7 +942,6 @@ Site Header
 	color: #999;
 	font-size: 16px;
 	font-size: 1.6rem;
-	font-weight: 300;
 	line-height: 1;
 	margin-bottom: 0;
 }
@@ -928,19 +1004,26 @@ Site Navigation
 .genesis-nav-menu {
 	clear: both;
 	color: #999;
-	font-family: Lato, sans-serif;
 	line-height: 1.5;
 	width: 100%;
+	height: 150px;
+	font-weight: 500;
 }
 
 .genesis-nav-menu .menu-item {
 	display: inline-block;
 	text-align: left;
+	height: 120px;
+	margin-bottom: -60px;
+}
+
+.genesis-nav-menu .menu-item.menu-item-logo {
+	background: url("/wp-content/themes/sapphire-owl-genesis-child-theme/images/logo.png") no-repeat center top;
+	width: 290px;
 }
 
 .genesis-nav-menu a {
 	border: none;
-	color: #999;
 	display: block;
 	padding: 28px 24px;
 	padding: 2.8rem 2.4rem;
@@ -1031,32 +1114,15 @@ Site Navigation
 	padding: 1.4rem 0 0;
 }
 
-/* Site Header Navigation
---------------------------------------------- */
-
-.site-header .sub-menu {
-	border-top: 1px solid #eee;
-}
-
-.site-header .sub-menu .sub-menu {
-	margin-top: -55px;
-}
-
 /* Primary Navigation
 --------------------------------------------- */
 
-.nav-primary {
-	background-color: #333;
-}
+.tso-nav-primary {}
 
-.nav-primary a:hover,
-.nav-primary .current-menu-item > a {
-	color: #fff;
+.tso-nav-primary .wrap {
+	text-align: center;
 }
-
-.nav-primary .sub-menu a:hover {
-	color: #333;
-}
+.tso-nav-primary .wrap .menu-item-logo a {}
 
 /* Secondary Navigation
 --------------------------------------------- */
@@ -1074,12 +1140,12 @@ Content Area
 --------------------------------------------- */
 
 .entry {
-	background-color: #fff;
-	border-radius: 3px;
+	/*background-color: #fff;*/
+	/*border-radius: 3px;*/
 	margin-bottom: 40px;
 	margin-bottom: 4rem;
-	padding: 40px 40px 24px;
-	padding: 4rem 4rem 2.4rem;
+	padding: 0 40px 40px;
+	padding: 0 4rem 4rem;
 }
 
 .entry-content a {
@@ -1128,30 +1194,73 @@ Content Area
 }
 
 .entry-meta {
-	color: #999;
-	font-size: 14px;
-	font-size: 1.4rem;
+	color: #666;
+	font-size: 13px;
+	font-size: 1.3rem;
 }
 
-.entry-meta a {
-	border-bottom: 1px solid #ddd;
+.entry-header { margin-bottom: 20px; }
+
+/* TSO - round date div */
+.entry-header .tso-date {
+	float: left;
+	background-color: #5c6b66;
+	color: #fff;
+	text-align: center;
+	line-height: 1.1;
+	border-radius: 50%;
+	padding: 24px;
+	padding: 2.4rem;
+	margin-right: 25px;
+	margin-right: 2.5rem;
+	height: 100px;
+	height: 10rem;
+	width: 100px;
+	width: 10rem;
 }
+
+.entry-header .tso-date.previous-year {
+	padding-top: 20px;
+	padding-top: 2rem;
+	padding-bottom: 20px;
+	padding-bottom: 2rem;
+}
+
+.entry-header .tso-date .tso-month { font-size: 90%; }
+.entry-header .tso-date .tso-day { font-size: 225%; }
+.entry-header .tso-date .tso-year {
+	font-size: 60%;
+	opacity: .4;
+}
+/* END TSO - round date div */
 
 .entry-header .entry-meta {
 	margin-bottom: 24px;
 	margin-bottom: 2.4rem;
 }
 
-.entry-footer .entry-meta {
-	border-top: 2px solid #f5f5f5;
-	margin: 0 -40px;
-	margin: 0 -4rem;
-	padding: 32px 40px 8px;
-	padding: 3.2rem 4rem 0.8rem;
+/* Create margin to align content with center of date circle */
+.entry-content, .entry-footer { margin-left: 40px; }
+
+/* Entry Footer and archive description (i.e. 'Search results for: term') */
+.entry-footer, .archive-description {
+	background-color: #e9e9e9;
+	padding: 15px 20px;
+	padding: 1.5rem 2rem;
 }
 
+.entry-footer .entry-meta {
+	margin-bottom: 0;
+	font-size: 17px;
+	font-size: 1.7rem;
+	font-family: Signika, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-transform: uppercase;
+}
+
+.entry-footer .entry-meta a { color: #333; }
+.entry-footer .entry-meta a:hover { color: #666; }
+
 .entry-comments-link::before {
-	content: "\2014";
 	margin: 0 6px 0 2px;
 	margin: 0 0.6rem 0 0.2rem;
 }
@@ -1160,6 +1269,9 @@ Content Area
 .entry-tags {
 	display: block;
 }
+
+.entry-categories { text-transform: lowercase; }
+
 
 /* Pagination
 --------------------------------------------- */
@@ -1291,7 +1403,12 @@ Sidebars
 ---------------------------------------------------------------------------------------------------- */
 
 .sidebar {
-	color: #999;
+	/*color: #999;*/
+	background-color: #fff;
+	padding: 50px;
+	padding: 5rem;
+	margin-bottom: 50px;
+	margin-bottom: 5rem;
 }
 
 .sidebar a {
@@ -1314,16 +1431,21 @@ Sidebars
 }
 
 .sidebar .widget {
-	background-color: #fff;
-	border-radius: 3px;
+	border-bottom: 1pt solid #d4d4d4;
 	margin-bottom: 40px;
 	margin-bottom: 4rem;
-	padding: 40px;
-	padding: 4rem;
+	padding-bottom: 40px;
+	padding-bottom: 4rem;
 }
 
 .sidebar .enews-widget {
 	background-color: #333;
+}
+
+/* Sidebar Inputs */
+.sidebar input {
+	border-width: 0;
+	box-shadow: none;
 }
 
 
