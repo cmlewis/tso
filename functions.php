@@ -18,6 +18,9 @@ add_theme_support( 'genesis-footer-widgets', 3 );
 
 
 // ************************* TSO CUSTOMIZATIONS ************************* //
+// Init the TSO global variables for use within this plugin.
+init_tso_global_vars();
+
 // Unregister any unwanted Genesis widgets
 add_action( 'widgets_init', 'unregister_genesis_widgets', 20 );
 function unregister_genesis_widgets() {
@@ -28,13 +31,23 @@ function unregister_genesis_widgets() {
 // Add/register TSO widgets
 include_once( CHILD_DIR . '/lib/widgets/user-profile-widget.php' );
 include_once( CHILD_DIR . '/lib/widgets/tso-social-icon-widget.php' );
+include_once( CHILD_DIR . '/lib/widgets/tso-blog-follow-widget.php' );
 register_widget( 'TSO_User_Profile_Widget' );
 register_widget( 'TSO_Social_Icon_Widget' );
+register_widget( 'TSO_Blog_Follow_Widget' );
 
 // enqueue google fonts
 add_action( 'wp_enqueue_scripts', 'genesis_sample_google_fonts' );
 function genesis_sample_google_fonts() {
     wp_enqueue_style( 'google-font-sanchez-and-signika', '//fonts.googleapis.com/css?family=Sanchez:400,400italic|Signika:700', array(), child_theme_version );
+}
+
+// enqueue any custom js libs at bottom of page
+/** Load scripts before closing the body tag */
+add_action('genesis_after_footer', 'tso_footer_js_scripts');
+function tso_footer_js_scripts() {
+//    wp_register_script( 'pinterest', '//assets.pinterest.com/js/pinit.js' );
+//    wp_enqueue_script( 'pinterest', '//assets.pinterest.com/js/pinit.js');
 }
 
 // *********** UNREGISTER WIDGETS, REMOVE ACTIONS, ETC. **********
@@ -78,19 +91,13 @@ function tso_do_header() {
                     <a href="/">home</a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="#">about</a>
-                </li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="#">projects</a>
+                    <a href="/about/">about</a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-logo">
                     <a href="/"></a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="#">recipes</a>
-                </li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="#">resources</a>
+                    <a href="/projects/">projects</a>
                 </li>
                 <li class="last menu-item menu-item-type-post_type menu-item-object-page">
                     <a href="/contact/">contact</a>
@@ -120,30 +127,35 @@ function tso_entry_header_markup_open() {
 }
 
 // TSO - Add the date before the post header
-// TODO: CONSIDER CHANGING TO genesis_before_post_content SO TITLE DOESN'T HAVE TO BE MANIPULATED
 add_filter( 'genesis_post_title_output', 'tso_post_title_output' );
 add_filter( 'genesis_post_title_output', 'do_shortcode', 20 );
 
 function tso_post_title_output( $title ) {
 
-    $isCurrentYear = get_the_time( 'Y' ) === date('Y');
+    $date = '';
 
-    // Add the date div before the title
-    $date = '<div class="tso-date';
-    if (!$isCurrentYear)
-        $date .= ' previous-year';
-    $date .= '">';
-    $date .= '<div class="tso-month">';
-    $date .= ( strlen(get_the_time( 'F' )) > 5 ) ? '[post_date format="M"]' : '[post_date format="F"]';
-    $date .= '</div>';
-    $date .= '<div class="tso-day">[post_date format="d"]</div>';
+    // Only add the date if it's a post
+    if ( 'post' === get_post_type() ) {
 
-    // Only display the year if it's not the current year.
-    if ( !$isCurrentYear ) {
-        $date .= '<div class="tso-year">[post_date format="Y"]</div>';
+        $isCurrentYear = get_the_time( 'Y' ) === date('Y');
+
+        // Add the date div before the title
+        $date .= '<div class="tso-date';
+        if (!$isCurrentYear)
+            $date .= ' previous-year';
+        $date .= '">';
+        $date .= '<div class="tso-month">';
+        $date .= ( strlen(get_the_time( 'F' )) > 5 ) ? '[post_date format="M"]' : '[post_date format="F"]';
+        $date .= '</div>';
+        $date .= '<div class="tso-day">[post_date format="d"]</div>';
+
+        // Only display the year if it's not the current year.
+        if ( !$isCurrentYear ) {
+            $date .= '<div class="tso-year">[post_date format="Y"]</div>';
+        }
+
+        $date .= '</div>';
     }
-
-    $date .= '</div>';
 
     return $date . $title;
 }
@@ -159,12 +171,52 @@ function tso_post_info_filter($post_info) {
     }
 }
 
-// TSO - Customize the entry footer
-add_filter( 'genesis_post_meta', 'sp_post_meta_filter' );
-function sp_post_meta_filter($post_meta) {
+// TSO - customize entry footer open to add sharing links
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
+add_action( 'genesis_entry_footer', 'tso_entry_footer_markup_open', 5 );
+function tso_entry_footer_markup_open() {
+
+    if ( 'post' === get_post_type() ) {
+        printf( '<footer %s>', genesis_attr( 'entry-footer' ) );
+
+        // Add sharing icons
+        $post_footer_sharing_icons = '<div class="tso-entry-footer-sharing">
+                    <ul>
+                        <li><a title="Share via Pinterest" href="javascript:void((function(){var%20e=document.createElement(\'script\');e.setAttribute(\'type\',\'text/javascript\');e.setAttribute(\'charset\',\'UTF-8\');e.setAttribute(\'src\',\'http://assets.pinterest.com/js/pinmarklet.js?r=\'+Math.random()*99999999);document.body.appendChild(e)})());""><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_pinterest_small.png" alt="share via pinterest"></a></li>
+                        <li><a title="Share via Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u='. get_permalink() . '&amp;t=' . get_the_title() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_facebook_small.png" alt="Share via Facebook"></a></li>
+                        <li><a title="Share via Twitter" target="_blank" href="http://twitter.com/share?text=' . str_replace(" ", "%20", get_the_title()) . '%20%23sapphireowl&url='. get_permalink() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_twitter_small.png" alt="Share via Twitter"></a></li>
+                        <li><a title="Share via Email" href="mailto:?subject=Check%20out%20this%20post%20from%20The%20Sapphire%20Owl: ' . str_replace(" ", "%20", get_the_title()) . '&body=I%20just%20read%20this%20post%20on%20The%20Sapphire%20Owl%20blog%20and%20thought%20you%20might%20be%20interested.%20Check%20it%20out! '. get_permalink() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_email_small.png" alt="Share via Email"></a></li>
+                    </ul>
+                </div>';
+
+        echo $post_footer_sharing_icons;
+    }
+}
+
+// TSO - Customize the entry footer meta
+add_filter( 'genesis_post_meta', 'tso_post_meta_filter' );
+function tso_post_meta_filter($post_meta) {
     // Default - for reference
     // $post_meta = '[post_categories] [post_tags]';
-     $post_meta = '[post_comments] [post_edit]';
+    $post_meta = '[post_comments] [post_edit]';
 
     return $post_meta;
+}
+
+// TSO Breadcrumbs
+add_filter('genesis_breadcrumb_args', 'tso_breadcrumb_args');
+function tso_breadcrumb_args( $args ){
+    $args['sep'] = ' &gt; '; // Separator
+    $args['labels']['prefix'] = ''; // Remove 'You are here'
+
+    return $args;
+}
+
+// TSO - Customize the footer text
+add_filter('genesis_footer_creds_text', 'tso_footer_creds_filter');
+function tso_footer_creds_filter( $creds ) {
+    $creds = 'Copyright [footer_copyright] &middot; The Sapphire Owl ';
+    $creds .= '<span class="tso-footer-logo">logo</span>';
+    $creds .= ' Design by Christy Lewis &middot; Built on <a href="http://www.studiopress.com/themes/genesis" title="Genesis Framework">Genesis</a>';
+    return $creds;
 }

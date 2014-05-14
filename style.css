@@ -354,7 +354,6 @@ input:hover[type="submit"],
 .entry-content .button:hover {
 	color: #fff;
 }
-
 .button {
 	border-radius: 3px;
 	display: inline-block;
@@ -397,10 +396,10 @@ td {
 	padding: 0.6rem 0;
 }
 
-
 /*
 Structure and Layout
 ---------------------------------------------------------------------------------------------------- */
+
 
 /* Site Containers
 --------------------------------------------- */
@@ -539,10 +538,10 @@ Structure and Layout
 	margin-left: 0;
 }
 
-
 /*
 Common Classes
 ---------------------------------------------------------------------------------------------------- */
+
 
 /* WordPress
 --------------------------------------------- */
@@ -635,6 +634,8 @@ img.alignright,
 --------------------------------------------- */
 
 .breadcrumb {
+	font-size: 12px;
+	font-size: 1.2rem;
 	margin-bottom: 20px;
 	margin-bottom: 2rem;
 }
@@ -716,10 +717,10 @@ img.alignright,
 	margin-bottom: 2.4rem;
 }
 
-
 /*
 Widgets
 ---------------------------------------------------------------------------------------------------- */
+
 
 /* Featured Content
 --------------------------------------------- */
@@ -743,16 +744,17 @@ Widgets
 	border: none;
 }
 
-
 /* TSO User Profile
 --------------------------------------------- */
+
+
 /* User profile and search widgets */
 .sidebar .widget.tso-user-profile, .sidebar .widget.widget_search { margin-bottom: 0; }
-
 .sidebar .widget.tso-user-profile {
 	padding-top: 15px;
 	padding-top: 1.5rem;
 }
+
 .tso-user-profile .aligncenter { text-align: center; }
 .tso-user-profile .avatar { border-radius: 50%; }
 .tso-user-profile .tso_bio_title {
@@ -765,15 +767,15 @@ Widgets
 	text-align: center;
 	font-style: italic;
 }
-
 /* Search and subscribe email overrides */
+
 .sidebar .widget.widget_search { padding: 0; }
 .widget.widget_search .search-form input[type="search"], .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding: 20px 0; }
 .widget.widget_search .search-form input[type="search"], .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding-left: 35px; }
 .widget.widget_search .search-form input[type="search"] { background: transparent url(images/icons/icon_search_box.png) no-repeat left center; }
-
-
 /* START Jetpack subscription overrides */
+
+
 /* TODO: If switching to a different subscription plugin, remove this and restyle new plugin. */
 .sidebar .widget.jetpack_subscription_widget {
 	margin-top: 6rem;
@@ -788,39 +790,50 @@ Widgets
 /* END Jetpack subscription overrides */
 
 
-/* Social buttons in sidebar */
-.sidebar .widget.tso-user-icons {
+/* Social and subscription icons in sidebar and post footer */
+
+/* Sharing icons in post footer */
+.entry-footer .tso-entry-footer-sharing { float: right; }
+
+/* User's social profile icons and blog subscription icons in sidebar */
+.sidebar .widget.tso-user-icons, .sidebar .widget.tso-blog-follow-wrapper {
 	text-align: center;
 }
-.sidebar .widget.tso-user-icons ul {
+.sidebar .widget.tso-user-icons ul, .sidebar .widget.tso-blog-follow-wrapper ul, .entry-footer .tso-entry-footer-sharing ul {
 	clear: both;
 	width: 100%;
 }
-.sidebar .widget.tso-user-icons ul li {
+.sidebar .widget.tso-user-icons ul li, .sidebar .widget.tso-blog-follow-wrapper ul li, .entry-footer .tso-entry-footer-sharing ul li {
 	display: inline-block;
-	/*height: 120px;*/
-	/*margin-bottom: -60px;*/
-	/*text-align: left;*/
 }
-.sidebar .widget.tso-user-icons a {
+.sidebar .widget.tso-user-icons a, .sidebar .widget.tso-blog-follow-wrapper a, .entry-footer .tso-entry-footer-sharing a {
 	text-decoration: none;
 	border-bottom-width: 0;
 	outline: none;
 }
-
-.sidebar .widget.tso-user-icons a img {
+.sidebar .widget.tso-user-icons a img, .sidebar .widget.tso-blog-follow-wrapper a img {
 	padding-right: 5px;
 	padding-right: .5rem;
 }
 
-.sidebar .widget.tso-user-icons a:hover img {
+.sidebar .widget.tso-user-icons a:hover img, .sidebar .widget.tso-blog-follow-wrapper a:hover img {
 	opacity: .75;
 }
 
+.entry-footer .tso-entry-footer-sharing a img {
+	padding-right: 4px;
+	padding-right: .4rem;
+	opacity: .8;
+}
+
+.entry-footer .tso-entry-footer-sharing a:hover img {
+	opacity: 1;
+}
 
 /*
 Plugins
 ---------------------------------------------------------------------------------------------------- */
+
 
 /* Genesis eNews Extended
 --------------------------------------------- */
@@ -897,10 +910,10 @@ img#wpstats {
 	display: none;
 }
 
-
 /*
 Site Header
 ---------------------------------------------------------------------------------------------------- */
+
 
 .site-header {}
 
@@ -996,10 +1009,10 @@ Site Header
 	margin-top: 2.4rem;
 }
 
-
 /*
 Site Navigation
 ---------------------------------------------------------------------------------------------------- */
+
 
 .genesis-nav-menu {
 	clear: both;
@@ -1122,8 +1135,8 @@ Site Navigation
 .tso-nav-primary .wrap {
 	text-align: center;
 }
-.tso-nav-primary .wrap .menu-item-logo a {}
 
+.tso-nav-primary .wrap .menu-item-logo a {}
 /* Secondary Navigation
 --------------------------------------------- */
 
@@ -1131,10 +1144,10 @@ Site Navigation
 	background-color: #fff;
 }
 
-
 /*
 Content Area
 ---------------------------------------------------------------------------------------------------- */
+
 
 /* Entries
 --------------------------------------------- */
@@ -1202,6 +1215,7 @@ Content Area
 .entry-header { margin-bottom: 20px; }
 
 /* TSO - round date div */
+
 .entry-header .tso-date {
 	float: left;
 	background-color: #5c6b66;
@@ -1218,7 +1232,6 @@ Content Area
 	width: 100px;
 	width: 10rem;
 }
-
 .entry-header .tso-date.previous-year {
 	padding-top: 20px;
 	padding-top: 2rem;
@@ -1227,20 +1240,20 @@ Content Area
 }
 
 .entry-header .tso-date .tso-month { font-size: 90%; }
+
 .entry-header .tso-date .tso-day { font-size: 225%; }
 .entry-header .tso-date .tso-year {
 	font-size: 60%;
 	opacity: .4;
 }
 /* END TSO - round date div */
-
 .entry-header .entry-meta {
 	margin-bottom: 24px;
 	margin-bottom: 2.4rem;
 }
 
 /* Create margin to align content with center of date circle */
-.entry-content, .entry-footer { margin-left: 40px; }
+.post .entry-content, .post .entry-footer { margin-left: 40px; }
 
 /* Entry Footer and archive description (i.e. 'Search results for: term') */
 .entry-footer, .archive-description {
@@ -1248,7 +1261,6 @@ Content Area
 	padding: 15px 20px;
 	padding: 1.5rem 2rem;
 }
-
 .entry-footer .entry-meta {
 	margin-bottom: 0;
 	font-size: 17px;
@@ -1258,6 +1270,7 @@ Content Area
 }
 
 .entry-footer .entry-meta a { color: #333; }
+
 .entry-footer .entry-meta a:hover { color: #666; }
 
 .entry-comments-link::before {
@@ -1272,9 +1285,9 @@ Content Area
 
 .entry-categories { text-transform: lowercase; }
 
-
 /* Pagination
 --------------------------------------------- */
+
 
 .archive-pagination,
 .entry-pagination {
@@ -1397,10 +1410,10 @@ li.comment {
 	padding: 2.4rem;
 }
 
-
 /*
 Sidebars
 ---------------------------------------------------------------------------------------------------- */
+
 
 .sidebar {
 	/*color: #999;*/
@@ -1443,15 +1456,15 @@ Sidebars
 }
 
 /* Sidebar Inputs */
+
 .sidebar input {
 	border-width: 0;
 	box-shadow: none;
 }
-
-
 /*
 Footer Widgets
 ---------------------------------------------------------------------------------------------------- */
+
 
 .footer-widgets {
 	background-color: #333;
@@ -1513,27 +1526,44 @@ Footer Widgets
 	border: 1px solid #ddd;
 }
 
-
 /*
 Site Footer
 ---------------------------------------------------------------------------------------------------- */
 
+
 .site-footer {
-	background-color: #fff;
-	color: #999;
+	background-color: #5c6b66;
+	color: #fff;
 	font-size: 14px;
 	font-size: 1.4rem;
-	padding: 40px 0;
-	padding: 4rem 0;
-	text-align: center;
+	padding: 30px 0;
+	padding: 3rem 0;
+}
+.site-footer a { color: #ccc; }
+.site-footer p { margin-bottom: 0; }
+.site-footer .wrap p { text-align: center; }
+
+.site-footer .tso-footer-logo {
+	background-color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	margin: 0 30px;
+	margin: 0 3rem;
+	height: 85px;
+	height: 8.5rem;
+	width: 85px;
+	width: 8.5rem;
 }
 
-.site-footer a {
-	border-bottom: 1px solid #ddd;
-}
 
-.site-footer p {
-	margin-bottom: 0;
+/* Jetpack Popular Posts Widget Overrides */
+.tso .widgets-list-layout .widgets-list-layout-blavatar {
+	margin-right: 20px;
+	margin-right: 2rem;
+}
+.tso .widgets-list-layout-links {
+	float: none;
+	width: inherit;
 }
 
 
@@ -1550,9 +1580,9 @@ Media Queries
 		background: url(images/logo@2x.png) no-repeat left;
 		background-size: 320px 164px;
 	}
-
 }
 
+/* iPad landscape? */
 @media only screen and (max-width: 1139px) {
 
 	.site-inner,
@@ -1577,6 +1607,12 @@ Media Queries
 		width: 400px;
 	}
 
+	/* Sharing and subscribe icons */
+	.sidebar .widget.tso-user-icons a img, .sidebar .widget.tso-blog-follow-wrapper a img {
+		padding-right: 2px;
+		padding-right: .2rem;
+	}
+
 	.footer-widgets-1,
 	.footer-widgets-2,
 	.footer-widgets-3,
@@ -1587,12 +1623,8 @@ Media Queries
 
 }
 
+/* iPad Portrait */
 @media only screen and (max-width: 1023px) {
-
-	body {
-		background-color: #fff;
-	}
-
 	.content,
 	.content-sidebar-sidebar .content,
 	.content-sidebar-sidebar .content-sidebar-wrap,
@@ -1617,9 +1649,7 @@ Media Queries
 		padding: 2rem 0;
 	}
 
-	.header-image .site-header .wrap {
-		background-position: center top;
-	}
+	.header-image .site-header .wrap { background-position: center top; }
 
 	.site-inner {
 		padding-left: 5%;
@@ -1664,15 +1694,12 @@ Media Queries
 		margin: 1.6rem auto;
 	}
 
-	.genesis-nav-menu li.right {
-		display: none;
-	}
+	.genesis-nav-menu li.right { display: none; }
 
-	.entry-footer .entry-meta {
-		margin: 0;
-		padding-top: 12px;
-		padding-top: 1.2rem;
-	}
+	/* Remove entry margin */
+	.post .entry-content, .post .entry-footer { margin-left: 0; }
+
+	.entry-footer .entry-meta { margin: 0; }
 
 	.sidebar .widget.enews-widget {
 		padding: 40px;
@@ -1684,18 +1711,13 @@ Media Queries
 		padding: 2.4rem 0;
 	}
 
-	.footer-widgets {
-		padding: 40px 5% 16px;
-	}
+	.footer-widgets { padding: 40px 5% 16px; }
 
-	.footer-widgets-1 {
-		margin: 0;
-	}
-
+	.footer-widgets-1 { margin: 0; }
 }
 
+/* Phones */
 @media only screen and (max-width: 767px) {
-
 	.five-sixths,
 	.four-sixths,
 	.one-fourth,

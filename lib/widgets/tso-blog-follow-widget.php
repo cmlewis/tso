@@ -1,13 +1,13 @@
 <?php
 /**
- * TSO social icon widget to display the author's social accounts. To be used in sidebar,
- * but could be used on About page, author box, etc.
+ * TSO blog follow widget to display various icons to be used to follow/subscribe
+ * to the blog via Feedly, Feedburner, RSS, email, etc.
  *
  * @since 3.9
  *
  * @package TSO\Widgets
  */
-class TSO_Social_Icon_Widget extends WP_Widget {
+class TSO_Blog_Follow_Widget extends WP_Widget {
 
 	/**
 	 * Holds widget settings defaults, populated in constructor.
@@ -30,17 +30,17 @@ class TSO_Social_Icon_Widget extends WP_Widget {
 		);
 
 		$widget_ops = array(
-			'classname'   => 'tso-user-icons',
-			'description' => __( 'Displays social icons for a user\'s social accounts.', 'genesis' ),
+			'classname'   => 'tso-blog-follow-wrapper',
+			'description' => __( 'Displays icons to be used to follow/subscribe to the blog.', 'genesis' ),
 		);
 
 		$control_ops = array(
-			'id_base' => 'tso-user-icons',
+			'id_base' => 'tso-blog-follow',
 			'width'   => 200,
 			'height'  => 250,
 		);
 
-		parent::__construct( 'tso-user-icons', __( 'Sapphire Owl - User Social Icons', 'genesis' ), $widget_ops, $control_ops );
+		parent::__construct( 'tso-blog-follow', __( 'Sapphire Owl - Blog Follow Widget', 'genesis' ), $widget_ops, $control_ops );
 
 	}
 
@@ -65,48 +65,37 @@ class TSO_Social_Icon_Widget extends WP_Widget {
 
         $text = '';
 
-        // Get the user info.
-        $userData = get_userdata( $instance['user'] );
 
-        if ( !empty($userData) ) {
-            // Get social accounts here and output icons
-            $social_urls = array(
-                "user_twitter" => get_the_author_meta( 'user_twitter' ),
-                "user_facebook" => get_the_author_meta( 'user_facebook' ),
-                "user_linkedin" => get_the_author_meta( 'user_linkedin' ),
-                "user_youtube" => get_the_author_meta( 'user_youtube' ),
-                "user_spotify" => get_the_author_meta( 'user_spotify' ),
-                "user_googleplus" => get_the_author_meta( 'googleplus' ),
-                "user_github" => get_the_author_meta( 'user_github' ),
-                "user_instagram" => get_the_author_meta( 'user_instagram' ),
-                "user_foursquare" => get_the_author_meta( 'user_foursquare' ),
-                "user_pinterest" => get_the_author_meta( 'user_pinterest' ),
-                "user_RSS" => get_the_author_meta( 'user_RSS' ),
-                "user_bloglovin" => get_the_author_meta( 'user_bloglovin' ),
-                "user_feedly" => get_the_author_meta( 'user_feedly' )
-            );
+        // TODO: Hardcode subscription links for now that are not included in general settings, unless I can find a way to update the php db with the various sharing links
+        $subscription_links = array(
+            "blog_RSS" => get_bloginfo('rss2_url'),
+            "blog_feedly" => "http://www.feedly.com/home#subscription/feed/" . get_bloginfo('url') . "/feed/",
+            "blog_bloglovin" => "http://www.bloglovin.com/en/blog/12218307",
+            "blog_feedburner" => "http://feeds.feedburner.com/SapphireOwl"
+        );
 
+        $text .= '<ul>';
 
-            $text .= '<ul>';
+        foreach ($subscription_links as $key => $value) {
+            if ( !empty($value) ) {
+                $icon_name = str_replace("blog_", "", $key);
+                $alt_title_msg = "Follow via " . $icon_name;
 
-            foreach ($social_urls as $key => $value) {
-                if ( !empty($value) ) {
-                    $social_network = str_replace("user_", "", $key);
-
-                    // TODO: add username to img alt tag
-                    $text .= '<li><a href="' . $value . '" target="_blank"><img src="' . $GLOBALS['tso']['social_icon_map'][$social_network] . '" alt="' . $social_network . '" /></a></li>';
-                }
+                $text .= '<li><a href="' . $value . '" target="_blank" title="' . $alt_title_msg . '"><img src="' . $GLOBALS['tso']['social_icon_map'][$icon_name] . '" alt="' . $alt_title_msg . '" /></a></li>';
             }
-
-            $text .= '</ul>';
         }
+
+        // Add subscribe by email button with special logic.
+        $text .= '<li><a href="#"><img src="' . $GLOBALS['tso']['social_icon_map']['email'] . '" alt="Subscribe via Email" /></a></li>';
+
+        $text .= '</ul>';
+
 
         //* Echo $text
         echo wpautop( $text );
 
 
 		echo $after_widget;
-
 	}
 
 	/**
@@ -144,11 +133,6 @@ class TSO_Social_Icon_Widget extends WP_Widget {
             <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'genesis' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo esc_attr( $instance['title'] ); ?>" class="widefat" />
         </p>
-
-		<p>
-			<label for="<?php echo $this->get_field_name( 'user' ); ?>"><?php _e( 'Select a user to display social icons.', 'genesis' ); ?></label><br />
-			<?php wp_dropdown_users( array( 'who' => 'authors', 'name' => $this->get_field_name( 'user' ), 'selected' => $instance['user'] ) ); ?>
-		</p>
 
 		<?php
 
