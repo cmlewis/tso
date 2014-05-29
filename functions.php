@@ -182,10 +182,10 @@ function tso_entry_footer_markup_open() {
         // Add sharing icons
         $post_footer_sharing_icons = '<div class="tso-entry-footer-sharing">
                     <ul>
-                        <li><a title="Share via Pinterest" href="javascript:void((function(){var%20e=document.createElement(\'script\');e.setAttribute(\'type\',\'text/javascript\');e.setAttribute(\'charset\',\'UTF-8\');e.setAttribute(\'src\',\'http://assets.pinterest.com/js/pinmarklet.js?r=\'+Math.random()*99999999);document.body.appendChild(e)})());""><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_pinterest_small.png" alt="share via pinterest"></a></li>
-                        <li><a title="Share via Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u='. get_permalink() . '&amp;t=' . get_the_title() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_facebook_small.png" alt="Share via Facebook"></a></li>
-                        <li><a title="Share via Twitter" target="_blank" href="http://twitter.com/share?text=' . str_replace(" ", "%20", get_the_title()) . '%20%23sapphireowl&url='. get_permalink() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_twitter_small.png" alt="Share via Twitter"></a></li>
-                        <li><a title="Share via Email" href="mailto:?subject=Check%20out%20this%20post%20from%20The%20Sapphire%20Owl: ' . str_replace(" ", "%20", get_the_title()) . '&body=I%20just%20read%20this%20post%20on%20The%20Sapphire%20Owl%20blog%20and%20thought%20you%20might%20be%20interested.%20Check%20it%20out! '. get_permalink() . '"><img src="' . $GLOBALS['tso']['icon_img_dir'] . 'icon_email_small.png" alt="Share via Email"></a></li>
+                        <li><a title="Share via Pinterest" href="javascript:void((function(){var%20e=document.createElement(\'script\');e.setAttribute(\'type\',\'text/javascript\');e.setAttribute(\'charset\',\'UTF-8\');e.setAttribute(\'src\',\'http://assets.pinterest.com/js/pinmarklet.js?r=\'+Math.random()*99999999);document.body.appendChild(e)})());""><div class="tso-social-icon tso-icon-pinterest"></div></a></li>
+                        <li><a title="Share via Facebook" target="_blank" href="http://www.facebook.com/sharer.php?u='. get_permalink() . '&amp;t=' . get_the_title() . '"><div class="tso-social-icon tso-icon-facebook"></div></a></li>
+                        <li><a title="Share via Twitter" target="_blank" href="http://twitter.com/share?text=' . str_replace(" ", "%20", get_the_title()) . '%20%23sapphireowl&url='. get_permalink() . '"><div class="tso-social-icon tso-icon-twitter"></div></a></li>
+                        <li><a title="Share via Email" href="mailto:?subject=Check%20out%20this%20post%20from%20The%20Sapphire%20Owl: ' . str_replace(" ", "%20", get_the_title()) . '&body=I%20just%20read%20this%20post%20on%20The%20Sapphire%20Owl%20blog%20and%20thought%20you%20might%20be%20interested.%20Check%20it%20out! '. get_permalink() . '"><div class="tso-social-icon tso-icon-email"></div></a></li>
                     </ul>
                 </div>';
 
@@ -215,8 +215,10 @@ function tso_breadcrumb_args( $args ){
 // TSO - Customize the footer text
 add_filter('genesis_footer_creds_text', 'tso_footer_creds_filter');
 function tso_footer_creds_filter( $creds ) {
-    $creds = 'Copyright [footer_copyright] &middot; The Sapphire Owl ';
-    $creds .= '<span class="tso-footer-logo">logo</span>';
-    $creds .= ' Design by Christy Lewis &middot; Built on <a href="http://www.studiopress.com/themes/genesis" title="Genesis Framework">Genesis</a>';
+    $creds = '<div class="tso-footer-wrapper"><ul class="tso-footer-menu">';
+    $creds .= '<li class="menu-item">Copyright [footer_copyright] &middot; The Sapphire Owl </li>';
+    $creds .= '<li class="menu-item tso-footer-logo"></li>';
+    $creds .= '<li class="menu-item"> Design by Christy Lewis &middot; Built on <a href="http://www.studiopress.com/themes/genesis" target="_blank" title="Genesis Framework">Genesis</a></li>';
+    $creds .= '</ul></div>';
     return $creds;
 }

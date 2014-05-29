@@ -64,6 +64,18 @@
 
 */
 
+//
+// Variables and Mixins
+// ----------------------------------------------------------------------------------------------------
+@color-gold: #eac47d;
+@color-steel-blue: #5c6b66;
+
+// Mixin to calculate the background position of a sprite.
+// Pass in the x and y 'positions' of the sprite in the grid (i.e 0,1 or 2,3 etc.) as well as the grid size (assuming square)
+.sprite(@xMultiplier, @yMultiplier, @gridSize) {
+	background-position: -(@xMultiplier*@gridSize) -(@yMultiplier*@gridSize);
+}
+
 
 /*
 HTML5 Reset
@@ -334,7 +346,7 @@ input[type="submit"],
 	text-transform: uppercase;
 	width: auto;
 
-	&:hover { background-color: #eac47d; }
+	&:hover { background-color: @color-gold; }
 }
 
 .entry-content .button:hover { color: #fff; }
@@ -758,28 +770,58 @@ Widgets
 /* END Jetpack subscription overrides */
 
 
-/* Social and subscription icons in sidebar and post footer */
+/* Social and subscription icons in sidebar (large icons) and post footer (small icons) */
+@social-icon-grid-size: 26px;
+.tso-social-icon {
+	background-image: url(images/icons/social_icon_sprite.png);
+	background-repeat: no-repeat;
+	height: @social-icon-grid-size;
+	width: @social-icon-grid-size;
 
-/* User's social profile icons and blog subscription icons in sidebar */
+	&.tso-icon-email { .sprite(0, 0, @social-icon-grid-size) }
+	&.tso-icon-twitter { .sprite(1, 0, @social-icon-grid-size) }
+	&.tso-icon-facebook { .sprite(2, 0, @social-icon-grid-size) }
+	&.tso-icon-google-plus { .sprite(3, 0, @social-icon-grid-size) }
+	&.tso-icon-github { .sprite(4, 0, @social-icon-grid-size) }
+	&.tso-icon-linkedin { .sprite(5, 0, @social-icon-grid-size) }
+	&.tso-icon-pinterest { .sprite(6, 0, @social-icon-grid-size) }
+	&.tso-icon-youtube { .sprite(7, 0, @social-icon-grid-size) }
+	&.tso-icon-spotify { .sprite(0, 1, @social-icon-grid-size) }
+	&.tso-icon-foursquare { .sprite(1, 1, @social-icon-grid-size) }
+	&.tso-icon-instagram { .sprite(2, 1, @social-icon-grid-size) }
+	&.tso-icon-rss { .sprite(3, 1, @social-icon-grid-size) }
+	&.tso-icon-bloglovin { .sprite(4, 1, @social-icon-grid-size) }
+	&.tso-icon-feedly { .sprite(5, 1, @social-icon-grid-size) }
+	&.tso-icon-feedburner { .sprite(6, 1, @social-icon-grid-size) }
+}
+
+
+/* User's social profile icons and blog subscription icons in sidebar (large icons) */
 .sidebar .widget.tso-user-icons, .sidebar .widget.tso-blog-follow-wrapper {
 	text-align: center;
 
 	a {
-		img {
+		.tso-social-icon {
 			padding-right: 5px;
 			padding-right: .5rem;
 		}
 
-		&:hover img { opacity: .75; }
+		&:hover .tso-social-icon { opacity: .75; }
+	}
+
+	ul li:last-child {
+		margin-bottom: 6px;
+		margin-bottom: 0.6rem;
 	}
 }
 
+/* Sidebar and post footer uls */
 .sidebar .widget.tso-user-icons, .sidebar .widget.tso-blog-follow-wrapper, .entry-footer .tso-entry-footer-sharing {
 	ul {
 		clear: both;
 		width: 100%;
 
-		li { display: inline-block; }
+		li { display: inline-block;	}
 	}
 
 	a {
@@ -790,21 +832,21 @@ Widgets
 
 }
 
-/* Sharing icons in post footer */
+/* Sharing icons in post footer (small icons) */
 .entry-footer .tso-entry-footer-sharing {
 	float: right;
 
 	a {
-		img {
-			padding-right: 4px;
-			padding-right: .4rem;
+		.tso-social-icon {
+			padding-right: 3px;
+			padding-right: .3rem;
 			opacity: .8;
 		}
 
-		&:hover img { opacity: 1; }
+		&:hover .tso-social-icon { opacity: 1; }
 	}
 
-	ul li:last-child a img { padding-right: 0; }
+	ul li:last-child a .tso-social-icon { padding-right: 0; }
 }
 
 /*
@@ -827,7 +869,7 @@ Plugins
 	}
 
 	input[type="submit"] {
-		background-color: #eac47d;
+		background-color: @color-gold;
 		color: #fff;
 		margin: 0;
 		width: 100%;
@@ -990,7 +1032,7 @@ Site Navigation
 		margin-bottom: -60px;
 
 		&.menu-item-logo {
-			background: url("/wp-content/themes/sapphire-owl-genesis-child-theme/images/logo.png") no-repeat center top;
+			background: url("images/logo.png") no-repeat center top;
 			width: 290px;
 		}
 	}
@@ -1158,7 +1200,7 @@ Content Area
 	/* TSO - round date div */
 	.tso-date {
 		float: left;
-		background-color: #5c6b66;
+		background-color: @color-steel-blue;
 		color: #fff;
 		text-align: center;
 		line-height: 1.1;
@@ -1251,10 +1293,10 @@ Content Area
 			padding: 8px 12px;
 			padding: 0.8rem 1.2rem;
 
-			&:hover { background-color: #f15123; }
+			&:hover { background-color: @color-gold; }
 		}
 
-		&.active a { background-color: #f15123; }
+		&.active a { background-color: @color-gold; }
 	}
 
 }
@@ -1269,20 +1311,16 @@ Content Area
 .comment-respond,
 .entry-comments,
 .entry-pings {
-	background-color: #fff;
 	margin-bottom: 40px;
 	margin-bottom: 4rem;
 }
 
-.entry-comments {
-	padding: 40px;
-	padding: 4rem;
-}
+.entry-comments {}
 
 .comment-respond,
 .entry-pings {
-	padding: 40px 40px 16px;
-	padding: 4rem 4rem 1.6rem;
+	padding: 20px 0;
+	padding: 2rem 0;
 }
 
 .comment-respond a,
@@ -1327,11 +1365,7 @@ Content Area
 	margin-right: -3.2rem;
 }
 
-li.comment {
-	background-color: #f5f5f5;
-	border: 2px solid #fff;
-	border-right: none;
-}
+li.comment { background-color: #fff; }
 
 .comment .avatar {
 	margin: 0 16px 24px 0;
@@ -1460,27 +1494,43 @@ Footer Widgets
 Site Footer
 ---------------------------------------------------------------------------------------------------- */
 .site-footer {
-	background-color: #5c6b66;
-	color: #fff;
+	background-color: @color-steel-blue;
 	font-size: 14px;
 	font-size: 1.4rem;
 	padding: 30px 0;
 	padding: 3rem 0;
 
-	a { color: #ccc; }
-	p { margin-bottom: 0; }
-	.wrap p { text-align: center; }
+	&, a { color: #ccc; }
 
-	.tso-footer-logo {
-		background-color: #fff;
-		border-radius: 50%;
-		display: inline-block;
-		margin: 0 30px;
-		margin: 0 3rem;
-		height: 85px;
-		height: 8.5rem;
-		width: 85px;
-		width: 8.5rem;
+	a:hover { color: #aaa; }
+	p { margin-bottom: 0; }
+
+	.wrap {
+		text-align: center;
+		margin: 0 auto;
+
+		.tso-footer-wrapper {
+
+			padding: 12px 0 70px;
+			padding: 1.2rem 0 7rem;
+
+			.tso-footer-menu {
+				clear: both;
+
+				.menu-item {
+					display: inline-block;
+					margin-bottom: -72px;
+
+					&.tso-footer-logo {
+						background: url(images/logo-footer.png) center no-repeat;
+						height: 154px;
+						height: 15.4rem;
+						width: 220px;
+						width: 22rem;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1514,10 +1564,7 @@ Media Queries
 /* iPad landscape? */
 @media only screen and (max-width: 1139px) {
 
-	.site-inner,
-	.wrap {
-		max-width: 960px;
-	}
+	.site-inner, .wrap { max-width: 960px; }
 
 	.content-sidebar-sidebar .content-sidebar-wrap,
 	.sidebar-content-sidebar .content-sidebar-wrap,
@@ -1661,5 +1708,4 @@ Media Queries
 		margin: 0;
 		width: 100%;
 	}
-
 }

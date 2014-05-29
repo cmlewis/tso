@@ -71,19 +71,19 @@ class TSO_Social_Icon_Widget extends WP_Widget {
         if ( !empty($userData) ) {
             // Get social accounts here and output icons
             $social_urls = array(
-                "user_twitter" => get_the_author_meta( 'user_twitter' ),
-                "user_facebook" => get_the_author_meta( 'user_facebook' ),
-                "user_linkedin" => get_the_author_meta( 'user_linkedin' ),
-                "user_youtube" => get_the_author_meta( 'user_youtube' ),
-                "user_spotify" => get_the_author_meta( 'user_spotify' ),
-                "user_googleplus" => get_the_author_meta( 'googleplus' ),
-                "user_github" => get_the_author_meta( 'user_github' ),
-                "user_instagram" => get_the_author_meta( 'user_instagram' ),
-                "user_foursquare" => get_the_author_meta( 'user_foursquare' ),
-                "user_pinterest" => get_the_author_meta( 'user_pinterest' ),
-                "user_RSS" => get_the_author_meta( 'user_RSS' ),
-                "user_bloglovin" => get_the_author_meta( 'user_bloglovin' ),
-                "user_feedly" => get_the_author_meta( 'user_feedly' )
+                'twitter' => get_the_author_meta( 'user_twitter' ),
+                'facebook' => get_the_author_meta( 'user_facebook' ),
+                'linkedin' => get_the_author_meta( 'user_linkedin' ),
+                'youtube' => get_the_author_meta( 'user_youtube' ),
+                'spotify' => get_the_author_meta( 'user_spotify' ),
+                'googleplus' => get_the_author_meta( 'googleplus' ),
+                'github' => get_the_author_meta( 'user_github' ),
+                'instagram' => get_the_author_meta( 'user_instagram' ),
+                'foursquare' => get_the_author_meta( 'user_foursquare' ),
+                'pinterest' => get_the_author_meta( 'user_pinterest' ),
+                'rss' => get_the_author_meta( 'user_rss' ),
+                'bloglovin' => get_the_author_meta( 'user_bloglovin' ),
+                'feedly' => get_the_author_meta( 'user_feedly' )
             );
 
 
@@ -91,10 +91,8 @@ class TSO_Social_Icon_Widget extends WP_Widget {
 
             foreach ($social_urls as $key => $value) {
                 if ( !empty($value) ) {
-                    $social_network = str_replace("user_", "", $key);
-
-                    // TODO: add username to img alt tag
-                    $text .= '<li><a href="' . $value . '" target="_blank"><img src="' . $GLOBALS['tso']['social_icon_map'][$social_network] . '" alt="' . $social_network . '" /></a></li>';
+                    // TODO: add username to <a> title tag
+                    $text .= '<li><a href="' . $value . '" target="_blank" title="' . $key . '"><div class="tso-social-icon tso-icon-' . $key . '"></div></a></li>';
                 }
             }
 

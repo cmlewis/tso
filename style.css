@@ -839,21 +839,78 @@ Widgets
   margin-bottom: 0;
 }
 /* END Jetpack subscription overrides */
-/* Social and subscription icons in sidebar and post footer */
-/* User's social profile icons and blog subscription icons in sidebar */
+/* Social and subscription icons in sidebar (large icons) and post footer (small icons) */
+.tso-social-icon {
+  background-image: url(images/icons/social_icon_sprite.png);
+  background-repeat: no-repeat;
+  height: 26px;
+  width: 26px;
+}
+.tso-social-icon.tso-icon-email {
+  background-position: 0px 0px;
+}
+.tso-social-icon.tso-icon-twitter {
+  background-position: -26px 0px;
+}
+.tso-social-icon.tso-icon-facebook {
+  background-position: -52px 0px;
+}
+.tso-social-icon.tso-icon-google-plus {
+  background-position: -78px 0px;
+}
+.tso-social-icon.tso-icon-github {
+  background-position: -104px 0px;
+}
+.tso-social-icon.tso-icon-linkedin {
+  background-position: -130px 0px;
+}
+.tso-social-icon.tso-icon-pinterest {
+  background-position: -156px 0px;
+}
+.tso-social-icon.tso-icon-youtube {
+  background-position: -182px 0px;
+}
+.tso-social-icon.tso-icon-spotify {
+  background-position: 0px -26px;
+}
+.tso-social-icon.tso-icon-foursquare {
+  background-position: -26px -26px;
+}
+.tso-social-icon.tso-icon-instagram {
+  background-position: -52px -26px;
+}
+.tso-social-icon.tso-icon-rss {
+  background-position: -78px -26px;
+}
+.tso-social-icon.tso-icon-bloglovin {
+  background-position: -104px -26px;
+}
+.tso-social-icon.tso-icon-feedly {
+  background-position: -130px -26px;
+}
+.tso-social-icon.tso-icon-feedburner {
+  background-position: -156px -26px;
+}
+/* User's social profile icons and blog subscription icons in sidebar (large icons) */
 .sidebar .widget.tso-user-icons,
 .sidebar .widget.tso-blog-follow-wrapper {
   text-align: center;
 }
-.sidebar .widget.tso-user-icons a img,
-.sidebar .widget.tso-blog-follow-wrapper a img {
+.sidebar .widget.tso-user-icons a .tso-social-icon,
+.sidebar .widget.tso-blog-follow-wrapper a .tso-social-icon {
   padding-right: 5px;
   padding-right: .5rem;
 }
-.sidebar .widget.tso-user-icons a:hover img,
-.sidebar .widget.tso-blog-follow-wrapper a:hover img {
+.sidebar .widget.tso-user-icons a:hover .tso-social-icon,
+.sidebar .widget.tso-blog-follow-wrapper a:hover .tso-social-icon {
   opacity: .75;
 }
+.sidebar .widget.tso-user-icons ul li:last-child,
+.sidebar .widget.tso-blog-follow-wrapper ul li:last-child {
+  margin-bottom: 6px;
+  margin-bottom: 0.6rem;
+}
+/* Sidebar and post footer uls */
 .sidebar .widget.tso-user-icons ul,
 .sidebar .widget.tso-blog-follow-wrapper ul,
 .entry-footer .tso-entry-footer-sharing ul {
@@ -872,19 +929,19 @@ Widgets
   border-bottom-width: 0;
   outline: none;
 }
-/* Sharing icons in post footer */
+/* Sharing icons in post footer (small icons) */
 .entry-footer .tso-entry-footer-sharing {
   float: right;
 }
-.entry-footer .tso-entry-footer-sharing a img {
-  padding-right: 4px;
-  padding-right: .4rem;
+.entry-footer .tso-entry-footer-sharing a .tso-social-icon {
+  padding-right: 3px;
+  padding-right: .3rem;
   opacity: .8;
 }
-.entry-footer .tso-entry-footer-sharing a:hover img {
+.entry-footer .tso-entry-footer-sharing a:hover .tso-social-icon {
   opacity: 1;
 }
-.entry-footer .tso-entry-footer-sharing ul li:last-child a img {
+.entry-footer .tso-entry-footer-sharing ul li:last-child a .tso-social-icon {
   padding-right: 0;
 }
 /*
@@ -1044,7 +1101,7 @@ Site Navigation
   margin-bottom: -60px;
 }
 .genesis-nav-menu .menu-item.menu-item-logo {
-  background: url("/wp-content/themes/sapphire-owl-genesis-child-theme/images/logo.png") no-repeat center top;
+  background: url("images/logo.png") no-repeat center top;
   width: 290px;
 }
 .genesis-nav-menu a {
@@ -1288,10 +1345,10 @@ Content Area
   padding: 0.8rem 1.2rem;
 }
 .archive-pagination li a:hover {
-  background-color: #f15123;
+  background-color: #eac47d;
 }
 .archive-pagination li.active a {
-  background-color: #f15123;
+  background-color: #eac47d;
 }
 .entry-pagination a {
   border-bottom: 1px solid #ddd;
@@ -1301,18 +1358,13 @@ Content Area
 .comment-respond,
 .entry-comments,
 .entry-pings {
-  background-color: #fff;
   margin-bottom: 40px;
   margin-bottom: 4rem;
 }
-.entry-comments {
-  padding: 40px;
-  padding: 4rem;
-}
 .comment-respond,
 .entry-pings {
-  padding: 40px 40px 16px;
-  padding: 4rem 4rem 1.6rem;
+  padding: 20px 0;
+  padding: 2rem 0;
 }
 .comment-respond a,
 .entry-comments a {
@@ -1349,9 +1401,7 @@ Content Area
   margin-right: -3.2rem;
 }
 li.comment {
-  background-color: #f5f5f5;
-  border: 2px solid #fff;
-  border-right: none;
+  background-color: #fff;
 }
 .comment .avatar {
   margin: 0 16px 24px 0;
@@ -1463,31 +1513,42 @@ Site Footer
 ---------------------------------------------------------------------------------------------------- */
 .site-footer {
   background-color: #5c6b66;
-  color: #fff;
   font-size: 14px;
   font-size: 1.4rem;
   padding: 30px 0;
   padding: 3rem 0;
 }
+.site-footer,
 .site-footer a {
   color: #ccc;
+}
+.site-footer a:hover {
+  color: #aaa;
 }
 .site-footer p {
   margin-bottom: 0;
 }
-.site-footer .wrap p {
+.site-footer .wrap {
   text-align: center;
+  margin: 0 auto;
 }
-.site-footer .tso-footer-logo {
-  background-color: #fff;
-  border-radius: 50%;
+.site-footer .wrap .tso-footer-wrapper {
+  padding: 12px 0 70px;
+  padding: 1.2rem 0 7rem;
+}
+.site-footer .wrap .tso-footer-wrapper .tso-footer-menu {
+  clear: both;
+}
+.site-footer .wrap .tso-footer-wrapper .tso-footer-menu .menu-item {
   display: inline-block;
-  margin: 0 30px;
-  margin: 0 3rem;
-  height: 85px;
-  height: 8.5rem;
-  width: 85px;
-  width: 8.5rem;
+  margin-bottom: -72px;
+}
+.site-footer .wrap .tso-footer-wrapper .tso-footer-menu .menu-item.tso-footer-logo {
+  background: url(images/logo-footer.png) center no-repeat;
+  height: 154px;
+  height: 15.4rem;
+  width: 220px;
+  width: 22rem;
 }
 /* Jetpack Popular Posts Widget Overrides */
 .tso .widgets-list-layout .widgets-list-layout-blavatar {

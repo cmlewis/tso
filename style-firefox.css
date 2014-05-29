@@ -1,8 +1,8 @@
 /* Firefox, you stink. Making base font smaller instead of the 10px set in styles.css. */
 html {
-	font-size: 8px;
+	/*font-size: 8px;*/
 }
 
 body.firefox {}
 
-.tso-user-profile img.avatar { height: 165px; }
+/*.tso-user-profile img.avatar { height: 165px; }*/

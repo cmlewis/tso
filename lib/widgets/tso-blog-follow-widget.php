@@ -68,7 +68,7 @@ class TSO_Blog_Follow_Widget extends WP_Widget {
 
         // TODO: Hardcode subscription links for now that are not included in general settings, unless I can find a way to update the php db with the various sharing links
         $subscription_links = array(
-            "blog_RSS" => get_bloginfo('rss2_url'),
+            "blog_rss" => get_bloginfo('rss2_url'),
             "blog_feedly" => "http://www.feedly.com/home#subscription/feed/" . get_bloginfo('url') . "/feed/",
             "blog_bloglovin" => "http://www.bloglovin.com/en/blog/12218307",
             "blog_feedburner" => "http://feeds.feedburner.com/SapphireOwl"
@@ -81,15 +81,14 @@ class TSO_Blog_Follow_Widget extends WP_Widget {
                 $icon_name = str_replace("blog_", "", $key);
                 $alt_title_msg = "Follow via " . $icon_name;
 
-                $text .= '<li><a href="' . $value . '" target="_blank" title="' . $alt_title_msg . '"><img src="' . $GLOBALS['tso']['social_icon_map'][$icon_name] . '" alt="' . $alt_title_msg . '" /></a></li>';
+                $text .= '<li><a href="' . $value . '" target="_blank" title="' . $alt_title_msg . '"><div class="tso-social-icon tso-icon-' . $icon_name . '"></div></a></li>';
             }
         }
 
         // Add subscribe by email button with special logic.
-        $text .= '<li><a href="#"><img src="' . $GLOBALS['tso']['social_icon_map']['email'] . '" alt="Subscribe via Email" /></a></li>';
+        $text .= '<li><a href="#" title="Subscribe via Email"><div class="tso-social-icon tso-icon-email"></div></a></li>';
 
         $text .= '</ul>';
-
 
         //* Echo $text
         echo wpautop( $text );

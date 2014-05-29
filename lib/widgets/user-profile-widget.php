@@ -154,18 +154,6 @@ class TSO_User_Profile_Widget extends WP_Widget {
 			<?php wp_dropdown_users( array( 'who' => 'authors', 'name' => $this->get_field_name( 'user' ), 'selected' => $instance['user'] ) ); ?>
 		</p>
 
-		<p>
-			<label for="<?php echo $this->get_field_id( 'size' ); ?>"><?php _e( 'Gravatar Size', 'genesis' ); ?>:</label>
-			<select id="<?php echo $this->get_field_id( 'size' ); ?>" name="<?php echo $this->get_field_name( 'size' ); ?>">
-				<?php
-				$sizes = array( __( 'Small', 'genesis' ) => 45, __( 'Medium', 'genesis' ) => 65, __( 'Large', 'genesis' ) => 85, __( 'Extra Large', 'genesis' ) => 125 );
-				$sizes = apply_filters( 'genesis_gravatar_sizes', $sizes );
-				foreach ( (array) $sizes as $label => $size ) { ?>
-					<option value="<?php echo absint( $size ); ?>" <?php selected( $size, $instance['size'] ); ?>><?php printf( '%s (%spx)', $label, $size ); ?></option>
-				<?php } ?>
-			</select>
-		</p>
-
         <p>
             <label for="<?php echo $this->get_field_id( 'tso_bio_title' ); ?>"><?php _e( 'Bio Title', 'genesis' ); ?>:</label>
             <input type="text" id="<?php echo $this->get_field_id( 'tso_bio_title' ); ?>" name="<?php echo $this->get_field_name( 'tso_bio_title' ); ?>" value="<?php echo esc_attr( $instance['tso_bio_title'] ); ?>" class="widefat" />
