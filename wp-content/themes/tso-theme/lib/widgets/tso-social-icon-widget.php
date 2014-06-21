@@ -151,5 +151,4 @@ class TSO_Social_Icon_Widget extends WP_Widget {
 		<?php
 
 	}
-
 }
