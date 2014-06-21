@@ -61,12 +61,17 @@ function tso_dequeue_styles() {
 
 // *********** TSO - END UNREGISTER/REMOVE **********
 
-// Include the firefox stylesheet if is_gecko
-if($is_gecko) {
-    add_action( 'wp_enqueue_scripts', 'tso_enqueue_firefox_style' );
-    function tso_enqueue_firefox_style() {
-        wp_enqueue_style( 'child-theme-firefox', get_stylesheet_directory_uri() . '/style-firefox.css', false );
-    }
+// Enqueue theme CSS
+add_action( 'wp_enqueue_scripts', 'tso_enqueue_styles' );
+function tso_enqueue_styles() {
+
+    wp_enqueue_style( 'tso-theme', get_stylesheet_directory_uri() . '/css/style.css', false );
+
+    // Include the firefox stylesheet if is_gecko
+	// global $is_gecko;
+    //if($is_gecko) {
+    //    wp_enqueue_style( 'tso-theme-firefox', get_stylesheet_directory_uri() . '/css/style-firefox.css', false );
+    //}
 }
 
 // TSO - override header

@@ -1,21 +1,3 @@
-/*
-	Theme Name: Sapphire Owl Theme
-	Theme URI: http://www.sapphireowl.com/
-	Description: A Genesis child theme for The Sapphire Owl blog, compiled by LESS
-	Author: Christy Lewis
-	Author URI: http://www.christyml.com/
-	Version: 1.0
- 
-	Tags: gray, white, blue, yellow, one-column, two-columns, fixed-layout, responsive-layout, custom-menu, full-width-template, sticky-post, theme-options, threaded-comments
- 
-	Template: genesis
-	Template Version: 2.0.1
- 
-	License: GPL-2.0+
-	License URI: http://www.opensource.org/licenses/gpl-license.php
-*/
-
-
 /* Table of Contents
 
 	- HTML5 Reset
@@ -99,7 +81,6 @@ input[type="search"] {
 
 /* Float Clearing
 --------------------------------------------- */
-
 .archive-pagination:before,
 .clearfix:before,
 .entry:before,
@@ -146,7 +127,7 @@ html {
 }
 
 body {
-	background: #fff url("images/bgPattern.jpg") repeat;
+	background: #fff url("../images/bgPattern.jpg") repeat;
 	color: #444444;
 	font-family: Sanchez, Georgia, serif;
 	font-size: 16px;
@@ -741,6 +722,11 @@ Widgets
 	p {
 		text-align: center;
 		font-style: italic;
+
+		a.read-more {
+			font-size: 8px;
+			font-size: .8rem;
+		}
 	}
 
 }
@@ -750,7 +736,7 @@ Widgets
 .tso .sidebar .widget.widget_search { padding: 0; }
 .tso .widget.widget_search .search-form input[type="search"], .tso .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding: 20px 0; }
 .tso .widget.widget_search .search-form input[type="search"], .tso .sidebar .widget.jetpack_subscription_widget #subscribe-field { padding-left: 35px; }
-.tso .widget.widget_search .search-form input[type="search"] { background: transparent url(images/icons/icon_search_box.png) no-repeat left center; }
+.tso .widget.widget_search .search-form input[type="search"] { background: transparent url(../images/icons/icon_search_box.png) no-repeat left center; }
 
 
 /* START Jetpack subscription overrides */
@@ -759,7 +745,7 @@ Widgets
 	margin-top: 6rem;
 
 	#subscribe-field {
-		background: transparent url(images/icons/icon_subscribe_box.png) no-repeat left center;
+		background: transparent url(../images/icons/icon_subscribe_box.png) no-repeat left center;
 		border-width: 1pt 0;
 		border-style: solid;
 		border-color: #d4d4d4;
@@ -773,7 +759,7 @@ Widgets
 /* Social and subscription icons in sidebar (large icons) and post footer (small icons) */
 @social-icon-grid-size: 26px;
 .tso-social-icon {
-	background-image: url(images/icons/social_icon_sprite.png);
+	background-image: url(../images/icons/social_icon_sprite.png);
 	background-repeat: no-repeat;
 	height: @social-icon-grid-size;
 	width: @social-icon-grid-size;
@@ -982,7 +968,7 @@ Site Header
 /* Logo, hide text */
 
 .header-image .site-header .wrap {
-	background: transparent url(images/logo.png) center no-repeat;
+	background: transparent url(../images/logo.png) center no-repeat;
 	padding: 0;
 }
 
@@ -1032,7 +1018,7 @@ Site Navigation
 		margin-bottom: -60px;
 
 		&.menu-item-logo {
-			background: url("images/logo.png") no-repeat center top;
+			background: url("../images/logo.png") no-repeat center top;
 			width: 290px;
 		}
 	}
@@ -1522,7 +1508,7 @@ Site Footer
 					margin-bottom: -72px;
 
 					&.tso-footer-logo {
-						background: url(images/logo-footer.png) center no-repeat;
+						background: url(../images/logo-footer.png) center no-repeat;
 						height: 154px;
 						height: 15.4rem;
 						width: 220px;
@@ -1556,7 +1542,7 @@ Media Queries
 	only screen and (min-device-pixel-ratio: 1.5) {
 
 	.header-image .site-header .wrap {
-		background: url(images/logo@2x.png) no-repeat left;
+		background: url(../images/logo@2x.png) no-repeat left;
 		background-size: 320px 164px;
 	}
 }
