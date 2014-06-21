@@ -3,7 +3,7 @@
 include_once( get_template_directory() . '/lib/init.php' );
 
 //* child theme (do not remove)
-define( 'child_theme_name', 'Sapphire Owl Theme - renamed' );
+define( 'child_theme_name', 'The Sapphire Owl Theme' );
 define( 'child_theme_url', 'http://www.sapphireowl.com/' );
 define( 'child_theme_version', '1.0' );
 
