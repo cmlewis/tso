@@ -225,3 +225,12 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+# CML Local files to ignore
+assets/
+wp-includes/
+wp-content/plugins/jetpack
+wp-content/themes/genesis
+wp-content/themes/genesis-sample
+wp-config.php
