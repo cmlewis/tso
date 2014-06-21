@@ -84,23 +84,22 @@ add_action( 'genesis_header', 'tso_do_header', 10, 2 );
  * @uses genesis_markup() Apply contextual markup.
  */
 function tso_do_header() {
-
     // TSO - hijacking the header and navigation so the logo can go in the middle.
     $nav = '<ul id="menu-primary-navigation-1" class="menu genesis-nav-menu menu-primary">
                 <li class="menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="/">home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="/about/">about</a>
+                    <a href="/about/">About</a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-logo">
                     <a href="/"></a>
                 </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                    <a href="/projects/">projects</a>
+                    <a href="http://www.christyml.com" target="_blank">Portfolio</a>
                 </li>
                 <li class="last menu-item menu-item-type-post_type menu-item-object-page">
-                    <a href="/contact/">contact</a>
+                    <a href="/contact/">Contact</a>
                 </li>
             </ul>';
 
@@ -166,7 +165,7 @@ function tso_post_info_filter($post_info) {
     if ( !is_page() ) {
         // Default - for reference
 //        $post_info = '[post_date] by [post_author_posts_link] [post_comments] [post_edit]';
-        $post_info = '[post_categories_no_uncategorized before=""]';
+        $post_info = '[post_categories_exclude_cats before="" excluded_categories="Uncategorized,Miscellaneous"]';
         return $post_info;
     }
 }
