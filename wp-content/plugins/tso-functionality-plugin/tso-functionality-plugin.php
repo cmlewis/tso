@@ -59,8 +59,8 @@ add_filter( 'user_contactmethods', 'add_to_author_profile', 10, 1);
  * @author FAT Media, LLC
  * @link http://wpbacon.com/tutorials/disable-jetpack-modules/
  */
-add_filter( 'jetpack_get_available_modules', 'prefix_kill_all_the_jetpacks' );
-function prefix_kill_all_the_jetpacks( $modules ) {
+add_filter( 'jetpack_get_available_modules', 'tso_kill_all_the_jetpacks' );
+function tso_kill_all_the_jetpacks( $modules ) {
 // A list of Jetpack modules which are allowed to activate.
     $whitelist = array(
         'after-the-deadline',
