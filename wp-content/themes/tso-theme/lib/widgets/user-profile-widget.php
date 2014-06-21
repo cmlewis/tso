@@ -98,7 +98,7 @@ class TSO_User_Profile_Widget extends WP_Widget {
         else
             $text .= get_the_author_meta( 'description', $instance['user'] );
 
-        $text .= $instance['page'] ? sprintf( ' <a class="pagelink" href="%s">%s</a>', get_page_link( $instance['page'] ), $instance['page_link_text'] ) : '';
+        $text .= $instance['page'] ? sprintf( '<br/><a class="pagelink read-more" href="%s">%s</a>', get_page_link( $instance['page'] ), $instance['page_link_text'] ) : '';
 
         //* Echo $text
         echo wpautop( $text );
