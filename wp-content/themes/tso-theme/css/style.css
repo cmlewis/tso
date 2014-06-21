@@ -793,8 +793,9 @@ Widgets
   font-style: italic;
 }
 .tso .widget.tso-user-profile p a.read-more {
-  font-size: 8px;
-  font-size: .8rem;
+  font-size: 14px;
+  font-size: 1.4rem;
+  opacity: .75;
 }
 /* Search and subscribe email overrides */
 .tso .sidebar .widget.widget_search {
